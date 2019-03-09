@@ -57,7 +57,16 @@ namespace OOP
         private void ParseIp(string file_path)
         {
             //Parse file for ip and port
-            address = new IPEndPoint(IPAddress.Parse(_ip), _port);
+            if (!File.Exists(file_path))
+            {
+                File.WriteAllText(file_path, _ip + ":" + _port.ToString());
+            }
+            string[] ip_port = File.ReadAllText(file_path).Split(':');
+
+            IPAddress ip;
+            int port;
+            if (IPAddress.TryParse(ip_port[0], out ip) && int.TryParse(ip_port[1], out port))
+                address = new IPEndPoint(ip, port);
         }
 
         private bool SendOnServer(string file_path, int filiation_id)
