@@ -61,6 +61,7 @@ namespace OOP
             return true;
         }
 
+
         //private bool TryParseCells(DataGridViewCell[] cells, out int[] tableParams)
         //{
         //    tableParams = new int[cells.Length];
