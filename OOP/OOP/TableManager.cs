@@ -45,27 +45,43 @@ namespace OOP
             tablesFillers[table]();
         }
 
-        private bool TryParseCells(DataGridViewCell[] cells, out int[] tableParams)
+        private bool TryParseCells<T>(DataGridViewCell[] cells, out T[] tableParams) where T: IComparable
         {
-            tableParams = new int[cells.Length];
+            Type t = typeof(T);
+            var method = t.GetMethod("TryParse", new Type[] { typeof(string), typeof(T).MakeByRefType() });
+
+            tableParams = new T[cells.Length]; 
             for (int i = 0; i < cells.Length; i++)
             {
-                if (!int.TryParse(cells[i].Value.ToString(), out tableParams[i]) || tableParams[i] < 0)
+                var parametrs = new object[] { cells[i].Value.ToString(), null };
+                if (!(bool)method.Invoke(null, parametrs) || tableParams[i].CompareTo(default(T)) < 0)
                     return false;
+                tableParams[i] = (T)parametrs[1];
             }
             return true;
         }
 
-        private bool TryParseCells(DataGridViewCell[] cells, out double[] tableParams)
-        {
-            tableParams = new double[cells.Length];
-            for (int i = 0; i < cells.Length; i++)
-            {
-                if (!double.TryParse(cells[i].Value.ToString(), out tableParams[i]) || tableParams[i] < 0)
-                    return false;
-            }
-            return true;
-        }
+        //private bool TryParseCells(DataGridViewCell[] cells, out int[] tableParams)
+        //{
+        //    tableParams = new int[cells.Length];
+        //    for (int i = 0; i < cells.Length; i++)
+        //    {
+        //        if (!int.TryParse(cells[i].Value.ToString(), out tableParams[i]) || tableParams[i] < 0)
+        //            return false;
+        //    }
+        //    return true;
+        //}
+
+        //private bool TryParseCells(DataGridViewCell[] cells, out double[] tableParams)
+        //{
+        //    tableParams = new double[cells.Length];
+        //    for (int i = 0; i < cells.Length; i++)
+        //    {
+        //        if (!double.TryParse(cells[i].Value.ToString(), out tableParams[i]) || tableParams[i] < 0)
+        //            return false;
+        //    }
+        //    return true;
+        //}
 
         private TableFiller[] GetTableFillers(DataGridView[] tables)
         {

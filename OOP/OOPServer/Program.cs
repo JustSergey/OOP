@@ -81,17 +81,37 @@ namespace OOPServer
 
         static void CreateAndSendResultFile(NetworkStream stream)
         {
-            int quarter_index = BitConverter.ToInt32(ParseData(stream), 0);
-            string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), "br?q" + quarter_index + ".dat");
-            if (files.Length > 0)
+            int quarter_index = BitConverter.ToInt32(ParseData(stream), 0);//пока год = 5
+            // пока для тестов
+            if (quarter_index == 5)
             {
-                Main_Form main_form = new Main_Form(files);
-                main_form.ShowDialog();
-                byte[] file = File.ReadAllBytes(result_file_name);
-                stream.Write(file, 0, file.Length);
-                Thread.Sleep(200);
-                Console.WriteLine("File result.dat was sent");
-                File.Delete(result_file_name);
+
+                //string[][] files = new string[4][];
+                //for( var i = 0;i<4;i++)
+                //files[i] = Directory.GetFiles(Directory.GetCurrentDirectory(), "br?q" + i + ".dat");
+                
+                //Main_Form main_form = new Main_Form(files);
+                //main_form.ShowDialog();
+                //byte[] file = File.ReadAllBytes(result_file_name);
+                //stream.Write(file, 0, file.Length);
+                //Thread.Sleep(200);
+                //Console.WriteLine("File result.dat was sent");
+                //File.Delete(result_file_name);
+            }
+
+            else
+            {
+                string[] files = Directory.GetFiles(Directory.GetCurrentDirectory(), "br?q" + quarter_index + ".dat");
+                if (files.Length > 0)
+                {
+                    Main_Form main_form = new Main_Form(files);
+                    main_form.ShowDialog();
+                    byte[] file = File.ReadAllBytes(result_file_name);
+                    stream.Write(file, 0, file.Length);
+                    Thread.Sleep(200);
+                    Console.WriteLine("File result.dat was sent");
+                    File.Delete(result_file_name);
+                }
             }
         }
 

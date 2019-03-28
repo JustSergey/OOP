@@ -33,7 +33,34 @@ namespace OOPServer
             InitializeTables(Tables);
             branchManager.FillTables(Tables);
         }
-        private void InitializeTables(DataGridView[] Tables)
+
+        //public Main_Form(string[][] branch_file_names)
+        //{
+        //    InitializeComponent();
+
+        //    DataGridView[] Tables = new DataGridView[] {
+        //        first_dataGridView, second_dataGridView, third_dataGridView,
+        //        fourth_dataGridView, fifth_dataGridView, sixth_dataGridView,
+        //        seventh_dataGridView, eighth_dataGridView, ninth_dataGridView,
+        //        tenth_dataGridView };
+
+        //    Branch[][] branches = new Branch[4][];
+
+        //    for (int i = 0; i < branches.Length; i++)
+        //    {
+        //        branches[i] = new Branch[branches[i].Length];//(DataManager.DeserializeToNewtables(branch_file_names[i]));
+        //        for (int j = 0; j < branches[i].Length; j++)
+        //            branches[i][j] = new Branch(DataManager.DeserializeToNewtables(branch_file_names[i][j]));
+        //    }
+
+
+
+        //    BranchManager branchManager = new BranchManager(branches);
+        //    branchManager.CalcualateBranchesRating();
+        //    InitializeTables(Tables);
+        //    branchManager.FillTables(Tables);
+        //}
+        public void InitializeTables(DataGridView[] Tables)
         {
             for (int i = 1; i < 7; i++)
             {
@@ -124,7 +151,6 @@ namespace OOPServer
 
         private void Main_Form_Shown(object sender, EventArgs e)
         {
-            //this.Activate();
             Bitmap bmp = new Bitmap(panel.Width, panel.Height);
             Rectangle bounds = new Rectangle(0, 0, bmp.Width, bmp.Height);
             panel.DrawToBitmap(bmp, bounds);

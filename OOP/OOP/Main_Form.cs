@@ -19,7 +19,7 @@ namespace OOP
 
         private string TableFileName {
             get => "t" + DataManager.BranchIndex + "q" + DataManager.QuarterIndex + ".dat"; }
-
+        
         public Main_Form()
         {
             InitializeComponent();
