@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Windows.Forms;
-using System.Text;
-using System.Threading;
+using System.Text.RegularExpressions;
+using Microsoft.Office.Interop.Excel;
 
 namespace OOP
 {
@@ -17,9 +14,11 @@ namespace OOP
         private TableManager tableManager;
         private DataGridView[] Tables;
 
-        private string TableFileName {
-            get => "t" + DataManager.BranchIndex + "q" + DataManager.QuarterIndex + ".dat"; }
-        
+        private string TableFileName
+        {
+            get => "t" + DataManager.BranchIndex + "q" + DataManager.QuarterIndex + ".dat";
+        }
+
         public Main_Form()
         {
             InitializeComponent();
@@ -59,7 +58,7 @@ namespace OOP
             login_Form.ShowDialog(this);
             if (DataManager.BranchIndex < 0 || DataManager.QuarterIndex < 0)
                 Close();
-            
+
             Text += ": Данные (" + DataManager.BranchName + ") за " + (DataManager.QuarterIndex + 1) + " квартал";
             DataManager.Deserialize(Tables, TableFileName);
         }
@@ -68,6 +67,58 @@ namespace OOP
         {
             if (DataManager.BranchIndex >= 0 && DataManager.QuarterIndex >= 0)
                 DataManager.Serialize(Tables, TableFileName);
+        }
+
+        private void first_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void SaveToExcelDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+
+
+        }
+
+        private void fifth_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void ExportToExcel_Click(object sender, EventArgs e)
+        {
+            SaveToExcelDialog.InitialDirectory = "C:";
+            SaveToExcelDialog.Title = "Save as Excel File";
+            SaveToExcelDialog.FileName = "";
+            SaveToExcelDialog.Filter =
+                "Excel Files(2003)|*.xls|Excel Files(2007)|*.xlsx|Excel Files(2013)|*.xlsx";
+
+            if (SaveToExcelDialog.ShowDialog() != DialogResult.Cancel)
+            {
+                var ExcelApp = new Microsoft.Office.Interop.Excel.Application();
+                ExcelApp.Application.Workbooks.Add(Type.Missing);
+
+                ExcelApp.Columns.ColumnWidth = 20;
+
+                //storing headers
+                for (int i = 1; i < first_dataGridView.ColumnCount + 1; i++)
+                {
+                    ExcelApp.Cells[1, i] = first_dataGridView.Columns[i - 1].HeaderText;
+                }
+
+                //storing every cell to excel sheet
+                for (int i = 0; i < first_dataGridView.RowCount; i++)
+                {
+                    for (int j = 0; j < first_dataGridView.ColumnCount; j++)
+                    {
+                        ExcelApp.Cells[i + 2, j + 1] = first_dataGridView[j, i].Value.ToString();
+                    }
+                }
+
+                ExcelApp.ActiveWorkbook.SaveCopyAs(SaveToExcelDialog.FileName.ToString());
+                ExcelApp.ActiveWorkbook.Saved = true;
+                ExcelApp.Quit();
+            }
         }
     }
 }

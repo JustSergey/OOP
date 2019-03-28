@@ -84,6 +84,8 @@
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.SaveToExcelDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.first_dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.second_dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.third_dataGridView)).BeginInit();
@@ -110,12 +112,13 @@
             this.Column3,
             this.Column4});
             this.first_dataGridView.Location = new System.Drawing.Point(22, 54);
-            this.first_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.first_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.first_dataGridView.Name = "first_dataGridView";
             this.first_dataGridView.RowHeadersVisible = false;
             this.first_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.first_dataGridView.Size = new System.Drawing.Size(1747, 246);
             this.first_dataGridView.TabIndex = 0;
+            this.first_dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.first_dataGridView_CellContentClick);
             this.first_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
             // Column1
@@ -162,7 +165,7 @@
             this.Column7,
             this.Column8});
             this.second_dataGridView.Location = new System.Drawing.Point(22, 377);
-            this.second_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.second_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.second_dataGridView.Name = "second_dataGridView";
             this.second_dataGridView.RowHeadersVisible = false;
             this.second_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -236,7 +239,7 @@
             this.Column11,
             this.Column12});
             this.third_dataGridView.Location = new System.Drawing.Point(22, 541);
-            this.third_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.third_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.third_dataGridView.Name = "third_dataGridView";
             this.third_dataGridView.RowHeadersVisible = false;
             this.third_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -311,7 +314,7 @@
             this.dataGridViewTextBoxColumn4,
             this.Column13});
             this.fourth_dataGridView.Location = new System.Drawing.Point(22, 757);
-            this.fourth_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.fourth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.fourth_dataGridView.Name = "fourth_dataGridView";
             this.fourth_dataGridView.RowHeadersVisible = false;
             this.fourth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -382,12 +385,13 @@
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9});
             this.fifth_dataGridView.Location = new System.Drawing.Point(22, 980);
-            this.fifth_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.fifth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.fifth_dataGridView.Name = "fifth_dataGridView";
             this.fifth_dataGridView.RowHeadersVisible = false;
             this.fifth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.fifth_dataGridView.Size = new System.Drawing.Size(1747, 83);
             this.fifth_dataGridView.TabIndex = 11;
+            this.fifth_dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fifth_dataGridView_CellContentClick);
             this.fifth_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
             // dataGridViewTextBoxColumn5
@@ -450,7 +454,7 @@
             this.sixth_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column14});
             this.sixth_dataGridView.Location = new System.Drawing.Point(22, 1194);
-            this.sixth_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.sixth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.sixth_dataGridView.Name = "sixth_dataGridView";
             this.sixth_dataGridView.RowHeadersVisible = false;
             this.sixth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -489,7 +493,7 @@
             this.dataGridViewTextBoxColumn11,
             this.dataGridViewTextBoxColumn14});
             this.seventh_dataGridView.Location = new System.Drawing.Point(22, 1381);
-            this.seventh_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.seventh_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.seventh_dataGridView.Name = "seventh_dataGridView";
             this.seventh_dataGridView.RowHeadersVisible = false;
             this.seventh_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -545,7 +549,7 @@
             this.Column16,
             this.Column17});
             this.eighth_dataGridView.Location = new System.Drawing.Point(22, 1575);
-            this.eighth_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.eighth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.eighth_dataGridView.Name = "eighth_dataGridView";
             this.eighth_dataGridView.RowHeadersVisible = false;
             this.eighth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -587,7 +591,7 @@
             // 
             this.save_send_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.save_send_button.Location = new System.Drawing.Point(28, 2121);
-            this.save_send_button.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.save_send_button.Margin = new System.Windows.Forms.Padding(6);
             this.save_send_button.Name = "save_send_button";
             this.save_send_button.Size = new System.Drawing.Size(325, 55);
             this.save_send_button.TabIndex = 18;
@@ -608,7 +612,7 @@
             this.dataGridViewTextBoxColumn15,
             this.dataGridViewTextBoxColumn16});
             this.ninth_dataGridView.Location = new System.Drawing.Point(22, 1824);
-            this.ninth_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ninth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.ninth_dataGridView.Name = "ninth_dataGridView";
             this.ninth_dataGridView.RowHeadersVisible = false;
             this.ninth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -662,7 +666,7 @@
             this.dataGridViewTextBoxColumn19,
             this.dataGridViewTextBoxColumn20});
             this.tenth_dataGridView.Location = new System.Drawing.Point(22, 1953);
-            this.tenth_dataGridView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tenth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.tenth_dataGridView.Name = "tenth_dataGridView";
             this.tenth_dataGridView.RowHeadersVisible = false;
             this.tenth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
@@ -692,12 +696,27 @@
             this.dataGridViewTextBoxColumn20.ReadOnly = true;
             this.dataGridViewTextBoxColumn20.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(415, 2121);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(300, 55);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Сохранить в формате Excel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ExportToExcel_Click);
+            // 
+            // SaveToExcelDialog
+            // 
+            this.SaveToExcelDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveToExcelDialog_FileOk);
+            // 
             // Main_Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1865, 1044);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tenth_dataGridView);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.ninth_dataGridView);
@@ -719,7 +738,7 @@
             this.Controls.Add(this.second_dataGridView);
             this.Controls.Add(this.first_dataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Main_Form";
             this.Text = "Лучший филиал";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_Form_FormClosed);
@@ -797,6 +816,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.SaveFileDialog SaveToExcelDialog;
     }
 }
 
