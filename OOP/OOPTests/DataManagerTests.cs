@@ -7,15 +7,14 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OOP.Tests
+namespace OOPTests
 {
     [TestClass()]
     public class DataManagerTests
     {
         [TestMethod()]
-        public void SendRequestTest()
+        public void IsCorrectAddressTest()
         {
-            Assert.Fail();
         }
     }
 }

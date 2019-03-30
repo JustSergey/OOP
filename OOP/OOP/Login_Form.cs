@@ -76,7 +76,7 @@ namespace OOP
 
         private void ConnectAndGetResponse(string result_path)
         {
-            IPEndPoint address = DataManager.ParseIp(Main_Form.ip_info_path);
+            IPEndPoint address = NetManager.GetAddress(Main_Form.ip_info_path);
             if (!DataManager.ConnectToServer(address))
             {
                 MessageBox.Show(this, "Не удалось подключиться к серверу\nПопробуйте позже",

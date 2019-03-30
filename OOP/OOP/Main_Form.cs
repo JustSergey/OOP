@@ -45,7 +45,7 @@ namespace OOP
         {
             DataManager.Serialize(Tables, TableFileName);
 
-            IPEndPoint address = DataManager.ParseIp(ip_info_path);
+            IPEndPoint address = NetManager.GetAddress(ip_info_path);
             if (!DataManager.ConnectToServer(address))
             {
                 MessageBox.Show(this, "Не удалось подключиться к серверу\r\nПопробуйте позже",

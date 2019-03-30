@@ -7,16 +7,14 @@ using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
+using System.Globalization;
 
 namespace OOP
 {
     public static class DataManager
     {
-        const string default_ip = "127.0.0.1";
-        const int default_port = 3344;
-
         public enum MessageType { GetResult, SendFile };
-        
+
         private static TcpClient client;
         public static string BranchName;
         public static int BranchIndex = -1;
@@ -25,8 +23,7 @@ namespace OOP
         public static bool ConnectToServer(IPEndPoint address)
         {
             client = new TcpClient();
-            try { return client.ConnectAsync(address.Address, address.Port).Wait(2000); }
-            catch { return false; }
+            return NetManager.isClientConnected(client, address);
         }
 
         public static void SendRequest(MessageType messageType, string file_path)
@@ -62,21 +59,6 @@ namespace OOP
             } while (stream.DataAvailable);
 
             File.WriteAllBytes(result_file_path, data.ToArray());
-        }
-
-        public static IPEndPoint ParseIp(string file_path)
-        {
-            IPEndPoint default_address = new IPEndPoint(IPAddress.Parse(default_ip), default_port);
-            if (!File.Exists(file_path))
-            {
-                File.WriteAllText(file_path, default_ip + ":" + default_port.ToString());
-                return default_address;
-            }
-            string[] ip_port = File.ReadAllText(file_path).Split(':');
-
-            if (IPAddress.TryParse(ip_port[0], out IPAddress ip) && int.TryParse(ip_port[1], out int port))
-                return new IPEndPoint(ip, port);
-            return default_address;
         }
 
         public static void Serialize(DataGridView[] Tables, string file_path)
