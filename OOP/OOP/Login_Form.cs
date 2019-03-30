@@ -20,10 +20,14 @@ namespace OOP
         public Login_Form()
         {
             InitializeComponent();
+            branches_comboBox.Items.AddRange(GetFiliation(Main_Form.branches_info_path));
+        }
+
+        private static string[] GetFiliation(string Path)
+        {
             if (!File.Exists(Main_Form.branches_info_path))
                 File.WriteAllText(Main_Form.branches_info_path, "Филиал");
-            string[] branches = File.ReadAllLines(Main_Form.branches_info_path);
-            branches_comboBox.Items.AddRange(branches);
+            return File.ReadAllLines(Main_Form.branches_info_path);
         }
 
         private void Login_button_Click(object sender, EventArgs e)
@@ -75,7 +79,7 @@ namespace OOP
             IPEndPoint address = DataManager.ParseIp(Main_Form.ip_info_path);
             if (!DataManager.ConnectToServer(address))
             {
-                MessageBox.Show(this, "Не удалось подключиться к серверу\r\nПопробуйте позже",
+                MessageBox.Show(this, "Не удалось подключиться к серверу\nПопробуйте позже",
                     "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
