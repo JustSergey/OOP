@@ -118,7 +118,6 @@
             this.first_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.first_dataGridView.Size = new System.Drawing.Size(1747, 246);
             this.first_dataGridView.TabIndex = 0;
-            this.first_dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.first_dataGridView_CellContentClick);
             this.first_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
             // Column1
@@ -391,7 +390,6 @@
             this.fifth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
             this.fifth_dataGridView.Size = new System.Drawing.Size(1747, 83);
             this.fifth_dataGridView.TabIndex = 11;
-            this.fifth_dataGridView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.fifth_dataGridView_CellContentClick);
             this.fifth_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
             // dataGridViewTextBoxColumn5
@@ -705,10 +703,6 @@
             this.button1.Text = "Сохранить в формате Excel";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.ExportToExcel_Click);
-            // 
-            // SaveToExcelDialog
-            // 
-            this.SaveToExcelDialog.FileOk += new System.ComponentModel.CancelEventHandler(this.SaveToExcelDialog_FileOk);
             // 
             // Main_Form
             // 

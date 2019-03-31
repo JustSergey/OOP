@@ -75,27 +75,6 @@ namespace OOP
                 DataManager.Serialize(Tables, TableFileName);
         }
 
-        private void first_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void SaveToExcelDialog_FileOk(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-
-
-        }
-
-        private void FillExcelTable()
-        {
-
-        }
-
-        private void fifth_dataGridView_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
         private static void MakeBordetForTableCells(Excel.Application ExcelApp, Excel.Worksheet ws, int currentRow, int rowCount, int colCount, int startOfColumn = 1)
         {
             Excel.Range tableRange = ws.Range[ExcelApp.Cells[currentRow, startOfColumn], ExcelApp.Cells[currentRow + rowCount, colCount]];
