@@ -10,10 +10,9 @@ namespace OOP
         const string default_ip = "127.0.0.1";
         const int default_port = 3344;
 
-        public static bool isClientConnected(TcpClient client, IPEndPoint address)
+        public static bool ConnectToServer(TcpClient client, IPEndPoint address)
         {
-            try { return client.ConnectAsync(address.Address, address.Port).Wait(2000); }
-            catch { return false; }
+           return client.ConnectAsync(address.Address, address.Port).Wait(2000);
         }
 
         public static IPEndPoint GetAddress(string file_path)

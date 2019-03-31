@@ -14,9 +14,22 @@ namespace OOPTests
         }
 
         [TestMethod]
+        public void IsNotCorrectAddressTest()
+        {
+            Assert.IsTrue(!NetManager.IsCorrectAddress("ip:port"));
+        }
+
+
+        [TestMethod]
         public void IsCorrectIpTest()
         {
             Assert.IsTrue(NetManager.IsCorrectIp("127.0.0.1"));
+        }
+
+        [TestMethod]
+        public void IsNotCorrectIpCommaTest()
+        {
+            Assert.IsTrue(!NetManager.IsCorrectIp("127,0,0,1"));
         }
 
         [TestMethod]
@@ -26,10 +39,16 @@ namespace OOPTests
         }
 
         [TestMethod]
+        public void IsNotCorrectPortTest()
+        {
+            Assert.IsTrue(!NetManager.IsCorrectPort("a2359"));
+        }
+
+        [TestMethod]
         public void ParseIpTest()
         {
             IPAddress ip = new IPAddress(new byte[] { 192, 168, 0, 1 });
-            Assert.AreEqual(new IPEndPoint(ip, 7777), NetManager.ParseIp("192.168.0.1:7777"));
+            Assert.AreEqual(new IPEndPoint(ip, 2277), NetManager.ParseIp("192.168.0.1:2277"));
         }
 
     }

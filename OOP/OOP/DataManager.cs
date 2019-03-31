@@ -1,13 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
 using System.Net.Sockets;
 using System.IO;
-using System.Globalization;
 
 namespace OOP
 {
@@ -20,10 +17,13 @@ namespace OOP
         public static int BranchIndex = -1;
         public static int QuarterIndex = -1;
 
+        public const string ip_info_path = "ip.ini";
+        public const string branches_info_path = "branches.inf";
+
         public static bool ConnectToServer(IPEndPoint address)
         {
             client = new TcpClient();
-            return NetManager.isClientConnected(client, address);
+            return NetManager.ConnectToServer(client, address);
         }
 
         public static void SendRequest(MessageType messageType, string file_path)
