@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataManager.cs" />
+    <Compile Include="ExcelManager.cs" />
     <Compile Include="NetManeger.cs" />
     <Compile Include="Login_Form.cs">
       <SubType>Form</SubType>
