@@ -14,6 +14,7 @@ namespace OOP
         public static List<Label> LabelList { get; set; }
         public static List<DataGridView> GridList { get; set; }
         public static SaveFileDialog Dialog { get; set; }
+        public static Excel.Worksheet WorkSheet { get; set; }
 
         private static Excel.Application ExcelApp;
 
@@ -43,11 +44,21 @@ namespace OOP
             ExcelApp.Quit();
         }
 
-        private static void FillTables()
+        private static void FillTables(int numberOfWorksheet = 1)
         {
+            WorkSheet = (Excel.Worksheet)ExcelApp.Worksheets[numberOfWorksheet];
+
             ExcelApp.Columns.ColumnWidth = 30;
 
             var currentRow = 1;
+
+            Label tableHeadline = new Label
+            {
+                Text = "Данные (" + DataManager.BranchName + ") за " + (DataManager.QuarterIndex + 1) + " квартал"
+            };
+            ChangeLabelFontSize(currentRow, 15);
+            AddLabelToTable(ref currentRow, tableHeadline);
+            currentRow++;
 
             for (int i = 0; i < LabelList.Count; i++)
             {
@@ -60,27 +71,29 @@ namespace OOP
             currentRow += 2;
         }
 
+        private static void ChangeLabelFontSize(int currentRow, int fontSize, int numberOfWorksheet = 1, int startOfColumn = 1)
+        {
+            Excel.Range LabelRange = WorkSheet.Range[ExcelApp.Cells[currentRow, startOfColumn], ExcelApp.Cells[currentRow, startOfColumn]];
+            LabelRange.Font.Size = fontSize;
+        }
+
         private static void AddLabelToTable(ref int currentRow,
             Label label, int numberOfWorksheet = 1)
         {
-            var ws = (Excel.Worksheet)ExcelApp.Worksheets[numberOfWorksheet];
-
             var startOfRow = 1;
 
             ExcelApp.Cells[currentRow, startOfRow] = label.Text.ToString();
-            MakeLabelBold(ws, currentRow);
+            MakeLabelBold(currentRow);
             currentRow++;
         }
 
         private static void AddGridToTable(ref int currentRow,
             DataGridView dataGridView, int numberOfWorksheet = 1)
         {
-            var ws = (Excel.Worksheet)ExcelApp.Worksheets[numberOfWorksheet];
-
             var rowCount = dataGridView.RowCount;
             var colCount = dataGridView.ColumnCount;
 
-            MakeBordetForTableCells(ws, currentRow, rowCount, colCount);
+            MakeBordetForTableCells(currentRow, rowCount, colCount);
 
             //storing headers
             for (int i = 0; i < dataGridView.ColumnCount; i++)
@@ -94,22 +107,23 @@ namespace OOP
             {
                 for (int j = 0; j < dataGridView.ColumnCount; j++)
                 {
-                    ExcelApp.Cells[i + currentRow, j + 1] = dataGridView[j, i].Value;
+                    var rightViewOfNumber = dataGridView[j, i].Value.ToString().Replace(',', '.');
+                    ExcelApp.Cells[i + currentRow, j + 1] = rightViewOfNumber;
                 }
             }
 
             currentRow += dataGridView.RowCount;
         }
 
-        private static void MakeLabelBold(Excel.Worksheet ws, int currentRow, int startOfColumn = 1)
+        private static void MakeLabelBold(int currentRow, int startOfColumn = 1)
         {
-            Excel.Range LabelRange = ws.Range[ExcelApp.Cells[currentRow, startOfColumn], ExcelApp.Cells[currentRow, startOfColumn]];
+            Excel.Range LabelRange = WorkSheet.Range[ExcelApp.Cells[currentRow, startOfColumn], ExcelApp.Cells[currentRow, startOfColumn]];
             LabelRange.Font.Bold = true;
         }
 
-        private static void MakeBordetForTableCells(Excel.Worksheet ws, int currentRow, int rowCount, int colCount, int startOfColumn = 1)
+        private static void MakeBordetForTableCells(int currentRow, int rowCount, int colCount, int startOfColumn = 1)
         {
-            Excel.Range tableRange = ws.Range[ExcelApp.Cells[currentRow, startOfColumn], ExcelApp.Cells[currentRow + rowCount, colCount]];
+            Excel.Range tableRange = WorkSheet.Range[ExcelApp.Cells[currentRow, startOfColumn], ExcelApp.Cells[currentRow + rowCount, colCount]];
             tableRange.Borders.Color = System.Drawing.Color.Black.ToArgb();
         }
     }
