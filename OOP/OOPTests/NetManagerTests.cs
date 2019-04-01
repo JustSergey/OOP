@@ -50,6 +50,5 @@ namespace OOPTests
             IPAddress ip = new IPAddress(new byte[] { 192, 168, 0, 1 });
             Assert.AreEqual(new IPEndPoint(ip, 2277), NetManager.ParseIp("192.168.0.1:2277"));
         }
-
     }
 }

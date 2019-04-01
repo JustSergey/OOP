@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Net;
 using System.Windows.Forms;
-using System.Text.RegularExpressions;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Collections.Generic;
-using System.Globalization;
-//using Application = Microsoft.Office.Interop.Excel.Application;
 
 namespace OOP
 {
@@ -75,7 +72,8 @@ namespace OOP
                 DataManager.Serialize(Tables, TableFileName);
         }
 
-        private static void MakeBordetForTableCells(Excel.Application ExcelApp, Excel.Worksheet ws, int currentRow, int rowCount, int colCount, int startOfColumn = 1)
+        private static void MakeBordetForTableCells(Excel.Application ExcelApp, Excel.Worksheet ws, 
+                                    int currentRow, int rowCount, int colCount, int startOfColumn = 1)
         {
             Excel.Range tableRange = ws.Range[ExcelApp.Cells[currentRow, startOfColumn], ExcelApp.Cells[currentRow + rowCount, colCount]];
             tableRange.Borders.Color = System.Drawing.Color.Black.ToArgb();
@@ -86,9 +84,7 @@ namespace OOP
         {
             var ws = (Excel.Worksheet)ExcelApp.Worksheets[numberOfWorksheet];
 
-            var startOfRow = 1;
-
-            ExcelApp.Cells[currentRow, startOfRow] = label.Text.ToString();
+            ExcelApp.Cells[currentRow, 1] = label.Text.ToString();
             MakeLabelBold(ExcelApp, ws, currentRow);
             currentRow++;
         }
@@ -102,62 +98,50 @@ namespace OOP
         private void AddGridToTable(Excel.Application ExcelApp, ref int currentRow,
             DataGridView dataGridView, int numberOfWorksheet = 1)
         {
-            var ws = (Excel.Worksheet)ExcelApp.Worksheets[numberOfWorksheet];
+            Excel.Worksheet ws = (Excel.Worksheet)ExcelApp.Worksheets[numberOfWorksheet];
 
-            var rowCount = dataGridView.RowCount;
-            var colCount = dataGridView.ColumnCount;
+            MakeBordetForTableCells(ExcelApp, ws, currentRow, dataGridView.RowCount, dataGridView.ColumnCount);
 
-            MakeBordetForTableCells(ExcelApp, ws, currentRow, rowCount, colCount);
-
-            //storing headers
-            for (int i = 0; i < dataGridView.ColumnCount; i++)
-            {
-                ExcelApp.Cells[currentRow, i + 1] = dataGridView.Columns[i].HeaderText;
-            }
-            currentRow++;
-
-            //storing every cell to excel sheet
-            for (int i = 0; i < dataGridView.RowCount; i++)
-            {
-                for (int j = 0; j < dataGridView.ColumnCount; j++)
-                {
-                    ExcelApp.Cells[i + currentRow, j + 1] = dataGridView[j, i].Value;
-                }
-            }
+            storingHeaders(ExcelApp, currentRow, dataGridView);
+            storingEveryCell(ExcelApp, currentRow, dataGridView);
 
             currentRow += dataGridView.RowCount;
         }
 
+        private static void storingEveryCell(Excel.Application ExcelApp, int currentRow, DataGridView dataGridView)
+        {
+            for (int i = 0; i < dataGridView.RowCount; i++)
+                for (int j = 0; j < dataGridView.ColumnCount; j++)
+                    ExcelApp.Cells[i + currentRow, j + 1] = dataGridView[j, i].Value;
+        }
+
+        private static void storingHeaders(Excel.Application ExcelApp, int currentRow, DataGridView dataGridView)
+        {
+            for (int i = 0; i < dataGridView.ColumnCount; i++)
+                ExcelApp.Cells[currentRow, i + 1] = dataGridView.Columns[i].HeaderText;
+            currentRow++;
+        }
+
         private List<Label> PutTogetherLabels()
         {
-            var labelList = new List<Label>();
-            labelList.Add(label1);
-            labelList.Add(label2);
-            labelList.Add(label3);
-            labelList.Add(label4);
-            labelList.Add(label5);
-            labelList.Add(label6);
-            labelList.Add(label7);
-            labelList.Add(label8);
-            labelList.Add(label9);
-
+            List<Label> labelList = new List<Label>
+            {
+                label1, label2, label3,
+                label4, label5, label6,
+                label7, label8, label9
+            };
             return labelList;
         }
 
         private List<DataGridView> PutTogetherDataGridViews()
         {
-            var gridList = new List<DataGridView>();
-            gridList.Add(first_dataGridView);
-            gridList.Add(second_dataGridView);
-            gridList.Add(third_dataGridView);
-            gridList.Add(fourth_dataGridView);
-            gridList.Add(fifth_dataGridView);
-            gridList.Add(sixth_dataGridView);
-            gridList.Add(seventh_dataGridView);
-            gridList.Add(eighth_dataGridView);
-            gridList.Add(ninth_dataGridView);
-            gridList.Add(tenth_dataGridView);
-
+            List<DataGridView> gridList = new List<DataGridView>
+            {
+                first_dataGridView, second_dataGridView, third_dataGridView,
+                fourth_dataGridView, fifth_dataGridView, sixth_dataGridView,
+                seventh_dataGridView, eighth_dataGridView, ninth_dataGridView,
+                tenth_dataGridView
+            };
             return gridList;
         }
 
@@ -165,19 +149,16 @@ namespace OOP
         {
             ExcelApp.Columns.ColumnWidth = 30;
 
-            var currentRow = 1;
+            int currentRow = 1;
 
-            var gridList = PutTogetherDataGridViews();
-            var labelList = PutTogetherLabels();
-
-            for (int i = 0; i < labelList.Count; i++)
+            for (int i = 0; i < PutTogetherLabels().Count; i++)
             {
-                AddLabelToTable(ExcelApp, ref currentRow, labelList[i]);
-                AddGridToTable(ExcelApp, ref currentRow, gridList[i]);
+                AddLabelToTable(ExcelApp, ref currentRow, PutTogetherLabels()[i]);
+                AddGridToTable(ExcelApp, ref currentRow, PutTogetherDataGridViews()[i]);
                 currentRow += 2;
             }
 
-            AddGridToTable(ExcelApp, ref currentRow, gridList[9]);
+            AddGridToTable(ExcelApp, ref currentRow, PutTogetherDataGridViews()[9]);
             currentRow += 2;
         }
 
@@ -186,8 +167,7 @@ namespace OOP
             SaveToExcelDialog.InitialDirectory = "C:";
             SaveToExcelDialog.Title = "Save as Excel File";
             SaveToExcelDialog.FileName = "";
-            SaveToExcelDialog.Filter =
-                "Excel Files(2003)|*.xls|Excel Files(2007)|*.xlsx|Excel Files(2013)|*.xlsx";
+            SaveToExcelDialog.Filter = "Excel Files(2003)|*.xls|Excel Files(2007)|*.xlsx|Excel Files(2013)|*.xlsx";
 
             if (SaveToExcelDialog.ShowDialog() != DialogResult.Cancel)
             {

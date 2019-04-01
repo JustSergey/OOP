@@ -12,7 +12,15 @@ namespace OOP
 
         public static bool ConnectToServer(TcpClient client, IPEndPoint address)
         {
-           return client.ConnectAsync(address.Address, address.Port).Wait(2000);
+            try
+            {
+                return client.ConnectAsync(address.Address, address.Port).Wait(2000);
+            }
+            catch
+            {
+                return false;
+            }
+
         }
 
         public static IPEndPoint GetAddress(string file_path)
