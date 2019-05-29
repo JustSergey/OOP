@@ -84,6 +84,8 @@
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.SaveToExcelDialog = new System.Windows.Forms.SaveFileDialog();
             ((System.ComponentModel.ISupportInitialize)(this.first_dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.second_dataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.third_dataGridView)).BeginInit();
@@ -109,11 +111,12 @@
             this.Column2,
             this.Column3,
             this.Column4});
-            this.first_dataGridView.Location = new System.Drawing.Point(12, 29);
+            this.first_dataGridView.Location = new System.Drawing.Point(22, 54);
+            this.first_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.first_dataGridView.Name = "first_dataGridView";
             this.first_dataGridView.RowHeadersVisible = false;
             this.first_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.first_dataGridView.Size = new System.Drawing.Size(953, 133);
+            this.first_dataGridView.Size = new System.Drawing.Size(1747, 246);
             this.first_dataGridView.TabIndex = 0;
             this.first_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -160,11 +163,12 @@
             this.Column6,
             this.Column7,
             this.Column8});
-            this.second_dataGridView.Location = new System.Drawing.Point(12, 204);
+            this.second_dataGridView.Location = new System.Drawing.Point(22, 377);
+            this.second_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.second_dataGridView.Name = "second_dataGridView";
             this.second_dataGridView.RowHeadersVisible = false;
             this.second_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.second_dataGridView.Size = new System.Drawing.Size(953, 45);
+            this.second_dataGridView.Size = new System.Drawing.Size(1747, 83);
             this.second_dataGridView.TabIndex = 3;
             this.second_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -202,9 +206,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(22, 17);
+            this.label1.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(243, 17);
+            this.label1.Size = new System.Drawing.Size(421, 29);
             this.label1.TabIndex = 4;
             this.label1.Text = "Оборачиваемость ДЗ по отраслям:";
             // 
@@ -212,9 +217,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label2.Location = new System.Drawing.Point(12, 184);
+            this.label2.Location = new System.Drawing.Point(22, 340);
+            this.label2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(360, 17);
+            this.label2.Size = new System.Drawing.Size(635, 29);
             this.label2.TabIndex = 5;
             this.label2.Text = "Выполнение плана по погашению просроченной ДЗ:";
             // 
@@ -231,11 +237,12 @@
             this.Column10,
             this.Column11,
             this.Column12});
-            this.third_dataGridView.Location = new System.Drawing.Point(12, 293);
+            this.third_dataGridView.Location = new System.Drawing.Point(22, 541);
+            this.third_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.third_dataGridView.Name = "third_dataGridView";
             this.third_dataGridView.RowHeadersVisible = false;
             this.third_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.third_dataGridView.Size = new System.Drawing.Size(953, 67);
+            this.third_dataGridView.Size = new System.Drawing.Size(1747, 124);
             this.third_dataGridView.TabIndex = 6;
             this.third_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -273,9 +280,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label3.Location = new System.Drawing.Point(12, 273);
+            this.label3.Location = new System.Drawing.Point(22, 504);
+            this.label3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(230, 17);
+            this.label3.Size = new System.Drawing.Size(395, 29);
             this.label3.TabIndex = 7;
             this.label3.Text = "Выручка НВД на одного клиента:";
             // 
@@ -283,9 +291,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label4.Location = new System.Drawing.Point(12, 390);
+            this.label4.Location = new System.Drawing.Point(22, 720);
+            this.label4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(139, 17);
+            this.label4.Size = new System.Drawing.Size(246, 29);
             this.label4.TabIndex = 8;
             this.label4.Text = "Качество биллинга:";
             // 
@@ -303,11 +312,12 @@
             this.dataGridViewTextBoxColumn3,
             this.dataGridViewTextBoxColumn4,
             this.Column13});
-            this.fourth_dataGridView.Location = new System.Drawing.Point(12, 410);
+            this.fourth_dataGridView.Location = new System.Drawing.Point(22, 757);
+            this.fourth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.fourth_dataGridView.Name = "fourth_dataGridView";
             this.fourth_dataGridView.RowHeadersVisible = false;
             this.fourth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.fourth_dataGridView.Size = new System.Drawing.Size(953, 67);
+            this.fourth_dataGridView.Size = new System.Drawing.Size(1747, 124);
             this.fourth_dataGridView.TabIndex = 9;
             this.fourth_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -352,9 +362,10 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(9, 511);
+            this.label5.Location = new System.Drawing.Point(17, 943);
+            this.label5.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(151, 17);
+            this.label5.Size = new System.Drawing.Size(268, 29);
             this.label5.TabIndex = 10;
             this.label5.Text = "Производительность:";
             // 
@@ -372,11 +383,12 @@
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8,
             this.dataGridViewTextBoxColumn9});
-            this.fifth_dataGridView.Location = new System.Drawing.Point(12, 531);
+            this.fifth_dataGridView.Location = new System.Drawing.Point(22, 980);
+            this.fifth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.fifth_dataGridView.Name = "fifth_dataGridView";
             this.fifth_dataGridView.RowHeadersVisible = false;
             this.fifth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.fifth_dataGridView.Size = new System.Drawing.Size(953, 45);
+            this.fifth_dataGridView.Size = new System.Drawing.Size(1747, 83);
             this.fifth_dataGridView.TabIndex = 11;
             this.fifth_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -422,9 +434,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(12, 627);
+            this.label6.Location = new System.Drawing.Point(22, 1158);
+            this.label6.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(234, 17);
+            this.label6.Size = new System.Drawing.Size(409, 29);
             this.label6.TabIndex = 12;
             this.label6.Text = "Качество предоставляемых услуг:";
             // 
@@ -438,11 +451,12 @@
             this.sixth_dataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.sixth_dataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column14});
-            this.sixth_dataGridView.Location = new System.Drawing.Point(12, 647);
+            this.sixth_dataGridView.Location = new System.Drawing.Point(22, 1194);
+            this.sixth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.sixth_dataGridView.Name = "sixth_dataGridView";
             this.sixth_dataGridView.RowHeadersVisible = false;
             this.sixth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.sixth_dataGridView.Size = new System.Drawing.Size(953, 45);
+            this.sixth_dataGridView.Size = new System.Drawing.Size(1747, 83);
             this.sixth_dataGridView.TabIndex = 13;
             this.sixth_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -457,9 +471,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label7.Location = new System.Drawing.Point(12, 728);
+            this.label7.Location = new System.Drawing.Point(22, 1344);
+            this.label7.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(346, 17);
+            this.label7.Size = new System.Drawing.Size(609, 29);
             this.label7.TabIndex = 14;
             this.label7.Text = "Качество соблюдения нормативно-правовой базы:";
             // 
@@ -475,11 +490,12 @@
             this.dataGridViewTextBoxColumn10,
             this.dataGridViewTextBoxColumn11,
             this.dataGridViewTextBoxColumn14});
-            this.seventh_dataGridView.Location = new System.Drawing.Point(12, 748);
+            this.seventh_dataGridView.Location = new System.Drawing.Point(22, 1381);
+            this.seventh_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.seventh_dataGridView.Name = "seventh_dataGridView";
             this.seventh_dataGridView.RowHeadersVisible = false;
             this.seventh_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.seventh_dataGridView.Size = new System.Drawing.Size(953, 45);
+            this.seventh_dataGridView.Size = new System.Drawing.Size(1747, 83);
             this.seventh_dataGridView.TabIndex = 15;
             this.seventh_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -510,9 +526,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label8.Location = new System.Drawing.Point(12, 833);
+            this.label8.Location = new System.Drawing.Point(22, 1538);
+            this.label8.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(146, 17);
+            this.label8.Size = new System.Drawing.Size(251, 29);
             this.label8.TabIndex = 16;
             this.label8.Text = "Безопасность труда:";
             // 
@@ -529,11 +546,12 @@
             this.Column15,
             this.Column16,
             this.Column17});
-            this.eighth_dataGridView.Location = new System.Drawing.Point(12, 853);
+            this.eighth_dataGridView.Location = new System.Drawing.Point(22, 1575);
+            this.eighth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.eighth_dataGridView.Name = "eighth_dataGridView";
             this.eighth_dataGridView.RowHeadersVisible = false;
             this.eighth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.eighth_dataGridView.Size = new System.Drawing.Size(953, 80);
+            this.eighth_dataGridView.Size = new System.Drawing.Size(1747, 148);
             this.eighth_dataGridView.TabIndex = 17;
             this.eighth_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -570,9 +588,10 @@
             // save_send_button
             // 
             this.save_send_button.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.save_send_button.Location = new System.Drawing.Point(15, 1149);
+            this.save_send_button.Location = new System.Drawing.Point(28, 2121);
+            this.save_send_button.Margin = new System.Windows.Forms.Padding(6);
             this.save_send_button.Name = "save_send_button";
-            this.save_send_button.Size = new System.Drawing.Size(177, 30);
+            this.save_send_button.Size = new System.Drawing.Size(325, 55);
             this.save_send_button.TabIndex = 18;
             this.save_send_button.Text = "Сохранить и отправить";
             this.save_send_button.UseVisualStyleBackColor = true;
@@ -590,11 +609,12 @@
             this.dataGridViewTextBoxColumn13,
             this.dataGridViewTextBoxColumn15,
             this.dataGridViewTextBoxColumn16});
-            this.ninth_dataGridView.Location = new System.Drawing.Point(12, 988);
+            this.ninth_dataGridView.Location = new System.Drawing.Point(22, 1824);
+            this.ninth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.ninth_dataGridView.Name = "ninth_dataGridView";
             this.ninth_dataGridView.RowHeadersVisible = false;
             this.ninth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.ninth_dataGridView.Size = new System.Drawing.Size(953, 45);
+            this.ninth_dataGridView.Size = new System.Drawing.Size(1747, 83);
             this.ninth_dataGridView.TabIndex = 19;
             this.ninth_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -624,9 +644,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label9.Location = new System.Drawing.Point(9, 968);
+            this.label9.Location = new System.Drawing.Point(17, 1787);
+            this.label9.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(222, 17);
+            this.label9.Size = new System.Drawing.Size(385, 29);
             this.label9.TabIndex = 20;
             this.label9.Text = "Качество работы с персоналом:";
             // 
@@ -642,11 +663,12 @@
             this.dataGridViewTextBoxColumn18,
             this.dataGridViewTextBoxColumn19,
             this.dataGridViewTextBoxColumn20});
-            this.tenth_dataGridView.Location = new System.Drawing.Point(12, 1058);
+            this.tenth_dataGridView.Location = new System.Drawing.Point(22, 1953);
+            this.tenth_dataGridView.Margin = new System.Windows.Forms.Padding(6);
             this.tenth_dataGridView.Name = "tenth_dataGridView";
             this.tenth_dataGridView.RowHeadersVisible = false;
             this.tenth_dataGridView.ScrollBars = System.Windows.Forms.ScrollBars.Horizontal;
-            this.tenth_dataGridView.Size = new System.Drawing.Size(953, 45);
+            this.tenth_dataGridView.Size = new System.Drawing.Size(1747, 83);
             this.tenth_dataGridView.TabIndex = 21;
             this.tenth_dataGridView.CellEndEdit += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataGridView_CellEndEdit);
             // 
@@ -672,12 +694,23 @@
             this.dataGridViewTextBoxColumn20.ReadOnly = true;
             this.dataGridViewTextBoxColumn20.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(415, 2121);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(300, 55);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Сохранить в формате Excel";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.ExportToExcel_Click);
+            // 
             // Main_Form
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1017, 723);
+            this.ClientSize = new System.Drawing.Size(1865, 1044);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.tenth_dataGridView);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.ninth_dataGridView);
@@ -699,8 +732,7 @@
             this.Controls.Add(this.second_dataGridView);
             this.Controls.Add(this.first_dataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "Main_Form";
             this.Text = "Лучший филиал";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Main_Form_FormClosed);
@@ -778,6 +810,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.SaveFileDialog SaveToExcelDialog;
     }
 }
 

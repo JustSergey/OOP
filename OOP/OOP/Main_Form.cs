@@ -1,56 +1,27 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Net;
-using System.Net.Sockets;
 using System.Windows.Forms;
-using System.Text;
-using System.Threading;
+using System.Collections.Generic;
 
 namespace OOP
 {
     public partial class Main_Form : Form
     {
-        public const string ip_info_path = "ip.ini";
-        public const string branches_info_path = "branches.inf";
-
         private TableManager tableManager;
         private DataGridView[] Tables;
 
-        private string TableFileName {
-            get => "t" + DataManager.BranchIndex + "q" + DataManager.QuarterIndex + ".dat"; }
-        
+        private string TableFileName
+        {
+            get => "t" + DataManager.BranchIndex + "q" + DataManager.QuarterIndex + ".dat";
+        }
+
         public Main_Form()
         {
             InitializeComponent();
 
-            Tables = new DataGridView[] {
-                first_dataGridView, second_dataGridView, third_dataGridView,
-                fourth_dataGridView, fifth_dataGridView, sixth_dataGridView,
-                seventh_dataGridView, eighth_dataGridView, ninth_dataGridView,
-                tenth_dataGridView };
-
+            Tables = GetADataGridView();
             TableManager.InitializeTables(Tables);
             tableManager = new TableManager(Tables);
-        }
-
-        private void DataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
-        {
-            tableManager.FillTable((DataGridView)sender);
-        }
-
-        private void Save_send_button_Click(object sender, EventArgs e)
-        {
-            DataManager.Serialize(Tables, TableFileName);
-
-            IPEndPoint address = DataManager.ParseIp(ip_info_path);
-            if (!DataManager.ConnectToServer(address))
-            {
-                MessageBox.Show(this, "Не удалось подключиться к серверу\r\nПопробуйте позже",
-                    "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-            DataManager.SendRequest(DataManager.MessageType.SendFile, TableFileName);
         }
 
         private void Main_Form_Load(object sender, EventArgs e)
@@ -59,7 +30,7 @@ namespace OOP
             login_Form.ShowDialog(this);
             if (DataManager.BranchIndex < 0 || DataManager.QuarterIndex < 0)
                 Close();
-            
+
             Text += ": Данные (" + DataManager.BranchName + ") за " + (DataManager.QuarterIndex + 1) + " квартал";
             DataManager.Deserialize(Tables, TableFileName);
         }
@@ -68,6 +39,64 @@ namespace OOP
         {
             if (DataManager.BranchIndex >= 0 && DataManager.QuarterIndex >= 0)
                 DataManager.Serialize(Tables, TableFileName);
+        }
+
+        private void ExportToExcel_Click(object sender, EventArgs e)
+        {
+            ExcelManager.LabelList = PutTogetherLabels();
+            ExcelManager.GridList = PutTogetherDataGridViews();
+            ExcelManager.Dialog = SaveToExcelDialog;
+            ExcelManager.ExportToExcel();
+        }
+
+        private void Save_send_button_Click(object sender, EventArgs e)
+        {
+            DataManager.Serialize(Tables, TableFileName);
+
+            IPEndPoint address = NetManager.GetAddress(DataManager.ip_info_path);
+            if (!DataManager.ConnectToServer(address))
+                MessageError("Не удалось подключиться к серверу\r\nПопробуйте позже");
+            else
+                DataManager.SendRequest(DataManager.MessageType.SendFile, TableFileName);
+        }
+
+        private void DataGridView_CellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            tableManager.FillTable((DataGridView)sender);
+        }
+
+        private void MessageError(string msg)
+        {
+            MessageBox.Show(this, msg, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        private DataGridView[] GetADataGridView()
+        {
+            return new DataGridView[] {
+                first_dataGridView, second_dataGridView, third_dataGridView,
+                fourth_dataGridView, fifth_dataGridView, sixth_dataGridView,
+                seventh_dataGridView, eighth_dataGridView, ninth_dataGridView,
+                tenth_dataGridView };
+        }
+
+        private List<Label> PutTogetherLabels()
+        {
+            return new List<Label> {
+                label1, label2, label3,
+                label4, label5, label6,
+                label7, label8, label9
+            };
+        }
+
+        private List<DataGridView> PutTogetherDataGridViews()
+        {
+            return new List<DataGridView>
+            {
+                first_dataGridView, second_dataGridView, third_dataGridView,
+                fourth_dataGridView, fifth_dataGridView, sixth_dataGridView,
+                seventh_dataGridView, eighth_dataGridView, ninth_dataGridView,
+                tenth_dataGridView
+            };
         }
     }
 }

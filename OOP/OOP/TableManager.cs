@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace OOP
@@ -60,28 +57,6 @@ namespace OOP
             }
             return true;
         }
-
-        //private bool TryParseCells(DataGridViewCell[] cells, out int[] tableParams)
-        //{
-        //    tableParams = new int[cells.Length];
-        //    for (int i = 0; i < cells.Length; i++)
-        //    {
-        //        if (!int.TryParse(cells[i].Value.ToString(), out tableParams[i]) || tableParams[i] < 0)
-        //            return false;
-        //    }
-        //    return true;
-        //}
-
-        //private bool TryParseCells(DataGridViewCell[] cells, out double[] tableParams)
-        //{
-        //    tableParams = new double[cells.Length];
-        //    for (int i = 0; i < cells.Length; i++)
-        //    {
-        //        if (!double.TryParse(cells[i].Value.ToString(), out tableParams[i]) || tableParams[i] < 0)
-        //            return false;
-        //    }
-        //    return true;
-        //}
 
         private TableFiller[] GetTableFillers(DataGridView[] tables)
         {
